@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Lista de Reservas</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Lista de Reservas</h1>
+        <br>
+        <a href="{% url 'agregar_reserva' %}" class="btn btn-primary">Agregar Reserva</a>
+        <br>
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Cliente <i class="fa-solid fa-user"></i></th>
+                    <th>Fono <i class="fa-solid fa-phone"></i></th>
+                    <th>Fecha <i class="fa-solid fa-calendar"></i></th>
+                    <th>Hora <i class="fa-solid fa-hourglass-start"></i></th>
+                    <th>Personas <i class="fa-solid fa-person"></i></th>
+                    <th>Estado <i class="fa-solid fa-star"></i></th>
+                    <th>Observaciones <i class="fa-solid fa-magnifying-glass"></i></th>
+                    <th>Acciones <i class="fa-solid fa-bars"></i></th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for reserva in reservas %}
+                    <tr>
+                        <td>{{ reserva.cliente }}</td>
+                        <td>{{ reserva.fono }}</td>
+                        <td>{{ reserva.fecha }}</td>
+                        <td>{{ reserva.hora }}</td>
+                        <td>{{ reserva.personas }}</td>
+                        <td>{{ reserva.estado }}</td>
+                        <td>{{ reserva.observaciones }}</td>
+                        <td>
+                            <a href="{% url 'editar_reserva' reserva.id %}" class="btn btn-warning">Editar <i class="fa-solid fa-pen-to-square"></i></a>
+                            <a href="{% url 'eliminar_reserva' reserva.id %}" class="btn btn-danger">Eliminar <i class="fa-solid fa-trash"></i></a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <script src="https://kit.fontawesome.com/c989e299d1.js" crossorigin="anonymous"></script>
+</body>
+</html>
